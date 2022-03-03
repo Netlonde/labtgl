@@ -1,11 +1,12 @@
 import React from 'react';
-import Login from './pages/login';
+import Login from '@pages/login/index';
+import { Container } from '@assets/styles/GlobalStyles';
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Login />
-    </div>
+    </Container>
   );
 }
 
