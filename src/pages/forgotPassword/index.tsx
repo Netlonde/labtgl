@@ -1,7 +1,7 @@
 import ForgotPasswordContainer, {FullForgotPasswordContainer} from "./styled";
 
-import Slogan from "@components/slogan/Slogan";
-import FormForgot from "@components/formForgotPassword/FormForgot";
+import Slogan from "@components/accountLogin/slogan/Slogan";
+import FormForgot from "@components/accountLogin/formForgotPassword/FormForgot";
 
 function ForgotPassword(){
   return(

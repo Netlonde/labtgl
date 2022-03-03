@@ -1,7 +1,7 @@
 import React from "react";
 import LoginContainer, { FullLoginContainer } from "@pages/login/styled";
-import Slogan from "@components/slogan/Slogan";
-import FormLogin from "@components/formLogin/FormLogin";
+import Slogan from "@components/accountLogin/slogan/Slogan";
+import FormLogin from "@components/accountLogin/formLogin/FormLogin";
 
 function Login(){
   return(
@@ -10,7 +10,7 @@ function Login(){
       <LoginContainer>
           <h3 className="login-title">Authentication</h3>
           <FormLogin />
-          <a href="/" className="login-signUp">Sign Up {"->"}</a>
+          <a href="/sign-up" className="login-signUp">Sign Up {"->"}</a>
       </LoginContainer>
     </FullLoginContainer>
   )

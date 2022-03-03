@@ -19,7 +19,7 @@ const FormLoginContainer = styled.div`
     border: none;
     border-bottom: 1px solid #DDDDDD;
     border-radius: 14px 14px 0px 0px;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     font: italic normal bold 14px/15px Helvetica Neue;
     color: #404040;
     outline: none;
@@ -30,10 +30,11 @@ const FormLoginContainer = styled.div`
     width: 100%;
     text-align: right;
     margin-right: 30px;
+    margin-bottom: 15px;
   }
 
   .formlogin-forgotPassword a{
-    font: italic normal normal 14px/30px Helvetica Neue;
+    font: italic normal normal 14px/10px Helvetica Neue;
     letter-spacing: 0px;
     color: #C1C1C1;
     opacity: 1;
