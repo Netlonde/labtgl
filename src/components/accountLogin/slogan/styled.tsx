@@ -39,6 +39,56 @@ const SloganContainer = styled.div`
     text-transform: uppercase;
     opacity: 1;
   }
+
+  @media (max-width: 950px) {
+    margin-bottom: 2rem;
+
+    @media (max-height: 800px) {
+      margin-top: 5rem;
+    }
+
+    @media (max-height: 750px) {
+      margin-top: 8rem;
+    }
+
+    @media (max-height: 700px) {
+      margin-top: 10rem;
+    }
+
+    @media (max-height: 650px) {
+      margin-top: 12rem;
+    }
+
+    .slogan-firstText{
+      font: italic normal bold 50px/50px Helvetica Neue;
+    }
+
+    .slogan-forText{
+      font: italic normal bold 20px/25px Helvetica Neue;
+      width: 8rem;
+      padding: 0.2rem;
+    }
+
+    .slogan-lastText{
+      font: italic normal bold 65px/50px Helvetica Neue;
+    }
+  }
+
+  @media (max-width: 600px){
+    .slogan-firstText{
+      font: italic normal bold 40px/50px Helvetica Neue;
+    }
+
+    .slogan-forText{
+      font: italic normal bold 17px/25px Helvetica Neue;
+      width: 8rem;
+      padding: 0.2rem;
+    }
+
+    .slogan-lastText{
+      font: italic normal bold 50px/50px Helvetica Neue;
+    }
+  }
 `;
 
 export default SloganContainer;

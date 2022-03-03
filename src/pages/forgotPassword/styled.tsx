@@ -26,6 +26,40 @@ const ForgotPasswordContainer = styled.div`
   .forgotpassword-back:hover{
     text-decoration: underline !important;
   }
+
+  @media (max-width: 950px) {
+    .forgotpassword-title{
+      width: 23rem;
+      font: italic normal bold 35px/80px Helvetica Neue;
+    }
+
+  .forgotpassword-back{
+      font: italic normal bold 35px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .forgotpassword-title{
+      font: italic normal bold 28px/80px Helvetica Neue;
+    }
+
+  .forgotpassword-back{
+      font: italic normal bold 28px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .forgotpassword-title{
+      font: italic normal bold 23px/80px Helvetica Neue;
+    }
+
+  .forgotpassword-back{
+      font: italic normal bold 23px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
 `;
 
 export default ForgotPasswordContainer;
@@ -38,4 +72,8 @@ export const FullForgotPasswordContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+  }
 `;

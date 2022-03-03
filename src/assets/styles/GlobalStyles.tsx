@@ -7,9 +7,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html, body{
-    height: 100vh;
-    width: 100vw;
+  html, body, #root{
+    height: 100%;
+    width: 100%;
   }
 
   a{
@@ -26,8 +26,8 @@ export default GlobalStyle;
 
 
 export const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -26,6 +26,39 @@ const SignUpContainer = styled.div`
   .signup-back:hover{
     text-decoration: underline !important;
   }
+
+  @media (max-width: 950px) {
+    .signup-title{
+      font: italic normal bold 35px/80px Helvetica Neue;
+    }
+
+  .signup-back{
+      font: italic normal bold 35px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .signup-title{
+      font: italic normal bold 28px/80px Helvetica Neue;
+    }
+
+  .signup-back{
+      font: italic normal bold 28px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .signup-title{
+      font: italic normal bold 23px/80px Helvetica Neue;
+    }
+
+  .signup-back{
+      font: italic normal bold 23px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
 `;
 
 export default SignUpContainer;
@@ -37,4 +70,8 @@ export const FullSignUpContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+  @media (max-width: 950px) {
+    flex-direction: column;
+  }
 `;

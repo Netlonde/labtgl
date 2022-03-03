@@ -26,15 +26,55 @@ const LoginContainer = styled.div`
   .login-signUp:hover{
     text-decoration: underline !important;
   }
+
+  @media (max-width: 950px) {
+    .login-title{
+      font: italic normal bold 35px/80px Helvetica Neue;
+    }
+
+  .login-signUp{
+      font: italic normal bold 35px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .login-title{
+      font: italic normal bold 28px/80px Helvetica Neue;
+    }
+
+  .login-signUp{
+      font: italic normal bold 28px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .login-title{
+      font: italic normal bold 23px/80px Helvetica Neue;
+    }
+
+  .login-signUp{
+      font: italic normal bold 23px/80px Helvetica Neue;
+      margin-bottom: 3rem;
+    }
+  }
 `;
 
 export default LoginContainer;
 
 export const FullLoginContainer = styled.div`
-  width: 80vw;
-  height: 80vh;
+  width: 80%;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+
+
+  @media (max-width: 950px) {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
 `;

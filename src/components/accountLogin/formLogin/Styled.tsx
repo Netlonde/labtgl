@@ -72,6 +72,32 @@ const FormLoginContainer = styled.div`
     background-color: #B5C401;
     color: #fff;
   }
+
+  @media (max-width: 950px) {
+    width: 30rem;
+    max-height: 15rem;
+
+    input{
+      font: italic normal bold 17px/15px Helvetica Neue;
+    }
+
+    .formlogin-forgotPassword a{
+      font: italic normal normal 17px/10px Helvetica Neue;
+    }
+  }
+
+  @media (max-width: 550px) {
+    width: 20rem;
+    max-height: 15rem;
+
+    input{
+      font: italic normal bold 17px/15px Helvetica Neue;
+    }
+
+    .formlogin-forgotPassword a{
+      font: italic normal normal 17px/10px Helvetica Neue;
+    }
+  }
 `;
 
 export default FormLoginContainer
