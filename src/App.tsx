@@ -1,11 +1,10 @@
-import React from 'react';
-import Login from '@pages/login/index';
 import { Container } from '@assets/styles/GlobalStyles';
+import AppRoutes from './routes';
 
 function App() {
   return (
     <Container>
-      <Login />
+      <AppRoutes />
     </Container>
   );
 }

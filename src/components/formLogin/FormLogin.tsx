@@ -6,7 +6,7 @@ function FormLogin(){
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password"/>
       <div className="formlogin-forgotPassword">
-        <a href="/">I forget my password</a>
+        <a href="/forgot-password">I forget my password</a>
       </div>
       <div className="formlogin-buttonLogin">
         <button>Log In {"->"}</button>

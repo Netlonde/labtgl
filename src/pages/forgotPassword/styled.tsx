@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const LoginContainer = styled.div`
+const ForgotPasswordContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 40%;
 
-  .login-title{
+  .forgotpassword-title{
     text-align: center;
     font: italic normal bold 22px/80px Helvetica Neue;
     letter-spacing: 0px;
@@ -15,7 +15,7 @@ const LoginContainer = styled.div`
     opacity: 1;
   }
 
-  .login-signUp{
+  .forgotpassword-back{
     text-align: center;
     font: italic normal bold 22px/80px Helvetica Neue;
     letter-spacing: 0px;
@@ -23,14 +23,15 @@ const LoginContainer = styled.div`
     opacity: 1;
   }
 
-  .login-signUp:hover{
+  .forgotpassword-back:hover{
     text-decoration: underline !important;
   }
 `;
 
-export default LoginContainer;
+export default ForgotPasswordContainer;
 
-export const FullLoginContainer = styled.div`
+
+export const FullForgotPasswordContainer = styled.div`
   width: 80vw;
   height: 80vh;
   display: flex;
