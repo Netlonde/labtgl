@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FormLoginContainer = styled.div`
+const FormLoginContainer = styled.form`
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 25px #00000014;
   border: 1px solid #DDDDDD;
