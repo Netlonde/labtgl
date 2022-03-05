@@ -1,47 +1,36 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import auth from "@services/auth";
 
 const initialState = {
   user: {},
-  token: {}
+  token: {},
+  isLoggedIn: Boolean(localStorage.getItem('token'))
 }
+
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     LOGIN(state, action){
-      (async function loginToApp(){
-        try{
-          const {login} = auth();
-          const resLogin = await login(action.payload);
-          const token = resLogin.token.token;
-          alert('logou');
-          localStorage.setItem('token', JSON.stringify(token));
-        }catch{
-          alert('erro');
-        }
-      })();
+      const user = action.payload.user || localStorage.getItem('user');
+      const token = action.payload.token || localStorage.getItem('token');
 
+      localStorage.setItem('user', JSON.stringify(user));
+
+      state.user = user;
+      state.token = token;
+      state.isLoggedIn = true;
     },
-    REGISTER(state, action){
-      (async function registerToApp(){
-        try{
-          const {register} = auth();
-          const resRegister = await register(action.payload);
-          alert('logou');
-          console.log(resRegister);
-        }catch{
-          alert('erro');
-        }
-      })();
 
+    REGISTER(state, action){
+      state.user = (action.payload.user)
+      state.token = (action.payload.token)
     }
   }
 })
 
 const store = configureStore({
-  reducer: { counter: authSlice.reducer }
+  reducer: { auth: authSlice.reducer }
 });
 
 export const authActions = authSlice.actions;

@@ -1,4 +1,4 @@
-import instance from "@services/auth/api";
+import instance from "@services/api";
 import { InAuth,
          InBodyAuthLogin,
          InBodyAuthRegister,

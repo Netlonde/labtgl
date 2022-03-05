@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import FormLoginContainer from "./Styled";
 import { authActions } from "@store/AuthRedux";
+import auth from "@services/auth";
 
 function FormLogin(){
   const navigate = useNavigate();
@@ -13,7 +14,13 @@ function FormLogin(){
 
   async function handleLogin(e: React.FormEvent){
     e.preventDefault();
-    dispatch(authActions.LOGIN({email, password}));
+    const {login} = auth();
+    await login({email, password})
+      .then((res) => {
+        localStorage.setItem('token', String(res.token.token));
+        dispatch(authActions.LOGIN(res))
+      })
+      .catch(err => alert(err));
     navigate('/home')
   }
 

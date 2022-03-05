@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { authActions } from "@store/AuthRedux";
+import auth from "@services/auth";
 import SignUpContainer from "./styled";
 
 function FormSignUp(){
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -13,7 +16,12 @@ function FormSignUp(){
   async function handleCreateAccount(e : React.FormEvent){
     e.preventDefault();
 
-    dispatch(authActions.REGISTER({name, email, password}))
+    const {register} = auth();
+    await register({name, email, password})
+      .then(res => dispatch(authActions.REGISTER(res)))
+      .catch(err => alert(err));
+
+    navigate('/login');
   }
 
   return(
