@@ -21,10 +21,18 @@ function FormLogin(){
       await login({email, password})
         .then((res) => {
           localStorage.setItem('token', String(res.token.token));
-          dispatch(authActions.LOGIN(res))
+          toast.success('Login efetuado com sucesso');
+          dispatch(authActions.LOGIN(res));
+          navigate('/home');
         })
-        .catch(err => toast.error(err));
-      navigate('/home')
+        .catch(err => {
+          toast.error('Login e/ou senha inválidos');
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          dispatch(authActions.LOGOUT());
+        });
+
+
     }catch{
       toast.error('Não foi possível realizar o login.');
     }

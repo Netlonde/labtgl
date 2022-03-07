@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
 
 import { authActions } from "@store/AuthRedux";
 import auth from "@services/auth";
@@ -18,10 +19,12 @@ function FormSignUp(){
 
     const {register} = auth();
     await register({name, email, password})
-      .then(res => dispatch(authActions.REGISTER(res)))
-      .catch(err => alert(err));
-
-    navigate('/login');
+      .then(res =>{
+        dispatch(authActions.REGISTER(res))
+        navigate('/login');
+        toast.success('Usuário cadastrado com sucesso')
+      })
+      .catch(() => toast.error('Dados inválidos.'));
   }
 
   return(

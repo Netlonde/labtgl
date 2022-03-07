@@ -25,6 +25,12 @@ export const authSlice = createSlice({
     REGISTER(state, action){
       state.user = (action.payload.user)
       state.token = (action.payload.token)
+    },
+
+    LOGOUT(state){
+      state.user = {};
+      state.token = {};
+      state.isLoggedIn = false;
     }
   }
 })

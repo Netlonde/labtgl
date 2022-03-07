@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import ResponsiveHeaderContainer from "./styled";
 
 function ResponsiveHeader(props: any){
@@ -10,9 +11,8 @@ function ResponsiveHeader(props: any){
 
   function handleResponsiveLogout(e: React.FormEvent){
     e.preventDefault();
-
-    handleClose(false);
     handleLogout(e);
+    handleClose(false);
   }
 
   return ReactDOM.createPortal(

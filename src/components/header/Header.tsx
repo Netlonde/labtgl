@@ -16,17 +16,17 @@ function Header(){
   function handleClick(e: React.FormEvent){
     e.preventDefault();
 
-    dispatch(modalLogoutActions.ISMODALOPEN(!isOppen.modalOpen))
+    dispatch(modalLogoutActions.ISMODALOPEN(true))
+  }
+
+  function handleModalClose(isModalClose: Boolean){
+    dispatch(modalLogoutActions.ISMODALOPEN(isModalClose))
   }
 
   function handleResponsiveClick(e: React.FormEvent){
     e.preventDefault();
 
-    dispatch(modalResponsiveOptionsActions.ISMODALOPEN(!isResponsiveOppen.modalOpen));
-  }
-
-  function handleModalClose(isModalClose: Boolean){
-    dispatch(modalLogoutActions.ISMODALOPEN(isModalClose))
+    dispatch(modalResponsiveOptionsActions.ISMODALOPEN(true));
   }
 
   function handleResponsiveModalClose(isModalClose: Boolean){

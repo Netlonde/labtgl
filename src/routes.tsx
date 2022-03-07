@@ -15,8 +15,6 @@ function AppRoutes(){
 
     if(window.location.href === 'http://localhost:3000/') return(<Navigate to="/login" />);
 
-    console.log(window.location.href)
-
     return children;
   }
 
