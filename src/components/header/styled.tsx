@@ -47,6 +47,32 @@ const HeaderContainer = styled.header`
     justify-content: center;
     gap: 25px;
   }
+
+  .header-responsiveOptions{
+    margin-top: 10px;
+    display: none;
+  }
+
+  .header-responsiveButton{
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .header-responsiveButton:hover{
+    opacity: 1;
+  }
+
+  @media (max-width: 700px) {
+    padding: 0px 50px;
+
+    .header-options{
+      display: none;
+    }
+
+    .header-responsiveOptions{
+      display: block;
+    }
+  }
 `;
 
 export default HeaderContainer;

@@ -13,6 +13,10 @@ function AppRoutes(){
 
     if(!isLoggedIn) return(<Navigate to="/login" />);
 
+    if(window.location.href === 'http://localhost:3000/') return(<Navigate to="/login" />);
+
+    console.log(window.location.href)
+
     return children;
   }
 
@@ -20,6 +24,7 @@ function AppRoutes(){
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />}/>
+        <Route path="/" element={<Private />}/>
         <Route path="/forgot-password" element={<ForgotPassword />}/>
         <Route path="/sign-up" element={<SignUp />}/>
         <Route path="/home" element={<Private> <Home /> </Private>}/>

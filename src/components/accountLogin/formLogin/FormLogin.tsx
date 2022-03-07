@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 import FormLoginContainer from "./Styled";
 import { authActions } from "@store/AuthRedux";
@@ -15,13 +16,18 @@ function FormLogin(){
   async function handleLogin(e: React.FormEvent){
     e.preventDefault();
     const {login} = auth();
-    await login({email, password})
-      .then((res) => {
-        localStorage.setItem('token', String(res.token.token));
-        dispatch(authActions.LOGIN(res))
-      })
-      .catch(err => alert(err));
-    navigate('/home')
+
+    try{
+      await login({email, password})
+        .then((res) => {
+          localStorage.setItem('token', String(res.token.token));
+          dispatch(authActions.LOGIN(res))
+        })
+        .catch(err => toast.error(err));
+      navigate('/home')
+    }catch{
+      toast.error('Não foi possível realizar o login.');
+    }
   }
 
   return(
