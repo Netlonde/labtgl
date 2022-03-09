@@ -148,9 +148,19 @@ function NewBetsForm(){
       choiceNumbers.forEach((id: any) => alterColorNumber(`button-${id}`, game.color || betsType.types[0].color))
   }
 
+  function clearGame(e: React.MouseEvent){
+    e.preventDefault();
+    const $choiceNumbers = document.querySelector('.newbets-buttonNumbersChoiced');
+    const $ButtonNumbersContainer = document.querySelector('.newbets-buttonNumbers');
+    $choiceNumbers!.textContent = '';
+
+    $ButtonNumbersContainer?.childNodes.forEach((button: any) => alterColorNumber(button.id, 'rgb(173, 192, 196)'))
+  }
+
   function handleClick(e: any, bet: any){
     e.preventDefault();
     setGame(bet);
+    clearGame(e);
   }
 
 
@@ -203,7 +213,7 @@ function NewBetsForm(){
 
             <div className="newbets-buttonsGame">
               <button onClick={completeGame}>Complete Game</button>
-              <button>Clear Game</button>
+              <button onClick={clearGame}>Clear Game</button>
             </div>
 
             <button className="newbets-buyButton">{'{Ícone}'} Comprar</button>
