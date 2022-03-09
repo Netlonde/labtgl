@@ -5,6 +5,7 @@ import Login from "@pages/login";
 import ForgotPassword from "@pages/forgotPassword";
 import SignUp from "@pages/signUp";
 import Home from "@pages/home";
+import NewBets from "@pages/newBets";
 
 function AppRoutes(){
 
@@ -26,6 +27,7 @@ function AppRoutes(){
         <Route path="/forgot-password" element={<ForgotPassword />}/>
         <Route path="/sign-up" element={<SignUp />}/>
         <Route path="/home" element={<Private> <Home /> </Private>}/>
+        <Route path="/new-bets" element={<Private> <NewBets /> </Private>}/>
       </Routes>
     </BrowserRouter>
   )

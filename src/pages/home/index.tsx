@@ -1,24 +1,18 @@
 import Header from "@components/header/Header";
+import HomeMyGames from "@components/homeMyGames/HomeMyGames";
 import HomeContainer from "./styled";
 
 function Home(){
 
-  // async function handleClick(e: React.FormEvent){
-  //   e.preventDefault();
-  //   const { listBets } = myBets();
-  //   await listBets().then(res => console.log(res))
-
-  //   <button onClick={handleClick}>
-  //     Clique
-  //   </button>
-
-  // }
-
   return(
-
     <HomeContainer>
       <Header />
-      Home
+      <HomeMyGames />
+      <div className="home-newBet">
+        <a href="new-bets">
+          New Bet {'->'}
+        </a>
+      </div>
     </HomeContainer>
   )
 }

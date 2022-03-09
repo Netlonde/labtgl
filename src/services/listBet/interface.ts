@@ -17,7 +17,22 @@ export interface ResponseBet{
   Bets: Bet[]
 }
 
+interface registeredBet{
+  id: Number,
+  type: String,
+  description: String,
+  range: Number,
+  price: Number,
+  max_number: Number,
+  color: String
+}
+
+export interface ResponseRegisteredBet{
+  Bets: registeredBet[]
+}
+
 
 export interface InBets{
   listBets: () => Promise<ResponseBet>,
+  registeredBets: () => Promise<ResponseRegisteredBet>
 }

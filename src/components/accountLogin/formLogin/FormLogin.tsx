@@ -32,7 +32,6 @@ function FormLogin(){
           dispatch(authActions.LOGOUT());
         });
 
-
     }catch{
       toast.error('Não foi possível realizar o login.');
     }
