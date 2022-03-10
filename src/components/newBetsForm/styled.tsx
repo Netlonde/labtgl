@@ -3,6 +3,7 @@ import styled from "styled-components";
 const NewBetsFormContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   gap: 50px;
 
@@ -34,6 +35,13 @@ const NewBetsFormContainer = styled.div`
 
   .newbets-leftContainer{
     width: 700px;
+  }
+
+  .newbets-rightContainer{
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .newbets-gamesContainer{
@@ -119,6 +127,9 @@ const NewBetsFormContainer = styled.div`
     background-color: #fff;
   }
 
+  .newbets-buttonNumbersChoiced{
+    display: none;
+  }
 `;
 
 export default NewBetsFormContainer;

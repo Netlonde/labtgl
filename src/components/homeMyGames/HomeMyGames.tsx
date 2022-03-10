@@ -1,5 +1,6 @@
 import  { useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
 
 import HomeMyGamesContainer from "./styled";
 import myBets from "@services/listBet";
@@ -30,7 +31,7 @@ function HomeMyGames(){
         await listBets().then(res => dispatch(listBetActions.LISTMYBETS(res)))
         await registeredBets().then(res => dispatch(listBetActions.LISTREGISTREDBETS(res)))
       }catch{
-        alert('erro')
+        toast.error('Não foi possível obter seus jogos, atualize a página!');
       }
     }
     getBets();
@@ -67,8 +68,23 @@ function HomeMyGames(){
     })
   }
 
+  (function(){
+    const $MyBets = document.querySelector('.homemygames-container');
+    const $EnoughtGame = document.getElementById('homemygames-enoughtBets') || document.createElement('div');
+
+    if(betsState.myBets.length === 0) {
+      $EnoughtGame.id = 'homemygames-enoughtBets';
+      $EnoughtGame.innerHTML = "You don't have any bets yet.";
+      $MyBets?.appendChild($EnoughtGame);
+    }else{
+      $EnoughtGame.style.display = 'none';
+    }
+
+  })();
+
+
   return(
-    <HomeMyGamesContainer>
+    <HomeMyGamesContainer className="homemygames-container">
       <div className="homemygames-filterGames">
         <h3>RECENT GAMES</h3>
         <small>Filters</small>
@@ -108,7 +124,7 @@ function HomeMyGames(){
 
           const date = new Date(bet.created_at);
           const color = whatColorBet(betsState.bets.types, bet.type.type);
-          const money = bet.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});;
+          const money = bet.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
           return (
             <div
               key={Math.random()}

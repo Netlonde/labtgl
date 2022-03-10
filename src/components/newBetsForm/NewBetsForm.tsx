@@ -7,9 +7,11 @@ import myBets from "@services/listBet";
 
 import Cart from "./Cart/Cart";
 import NewBetsFormContainer from "./styled"
+import Loading from "@components/loading/Loading";
 
 
 function NewBetsForm(){
+  const [numbers, setNumbers] = useState([]);
   const [game, setGame] = useState(
     {id: '',
      type: '',
@@ -35,7 +37,7 @@ function NewBetsForm(){
   },[dispatch])
   const betsType = useSelector((state: any) => state.listBet.bets)
 
-  if(betsType.types === undefined) return<h1>Carregando</h1>;
+  if(betsType.types === undefined) return <Loading />
 
   function createButtons(range: number, color: String){
     const $ButtonNumbersContainer = document.querySelector('.newbets-buttonNumbers');
@@ -129,13 +131,10 @@ function NewBetsForm(){
           ? arrayNumbers.push(randomNumber)
           : i--;
     }
-    console.log(arrayNumbers)
     return arrayNumbers;
   }
 
-  function completeGame(e: React.FormEvent){
-    e.preventDefault();
-
+  function completeGame(){
     const $choiceNumbers = document.querySelector('.newbets-buttonNumbersChoiced');
     let choiceNumbers: any;
     choiceNumbers = $choiceNumbers?.innerHTML.split(',');
@@ -157,17 +156,51 @@ function NewBetsForm(){
     $ButtonNumbersContainer?.childNodes.forEach((button: any) => alterColorNumber(button.id, 'rgb(173, 192, 196)'))
   }
 
+  function alterColorType(e: any, color: String){
+    const $button = e.target || document.getElementById(`${betsType.types[0].type}`);
+    const $allButtons = document.querySelector('.newbets-gamesButtonContainer');
+
+    if($allButtons !== null){
+      $allButtons!.childNodes.forEach((filterOption: any) => {
+        if(!(filterOption.id === $button.id)){
+          filterOption.style.color = filterOption.style.borderColor;
+          filterOption.style.backgroundColor = 'rgb(255, 255, 255)';
+        }
+      })
+    }
+
+    if($button.style.color !== 'rgb(255, 255, 255)' ){
+      $button.style.backgroundColor = $button.style.color;
+      $button.style.border = `1px solid ${$button.style.color}`;
+      $button.style.color = 'rgb(255,255,255)'
+    }else{
+      return;
+    }
+  }
+
   function handleClick(e: any, bet: any){
     e.preventDefault();
     setGame(bet);
+    setNumbers([]);
+    clearGame(e);
+    alterColorType(e, game.color);
+  }
+
+  function handleAddToCart(e: React.MouseEvent){
+    const $choiceNumbers = document.querySelector('.newbets-buttonNumbersChoiced');
+    let numbers : any;
+    numbers = $choiceNumbers?.textContent;
+    numbers = numbers!.split(',')
+    setNumbers(numbers);
     clearGame(e);
   }
 
-
   if(game.range === 0 && betsType.types){
     setTimeout(() => {
-      removeAllButtons()
+      removeAllButtons();
       createButtons(betsType.types[0].range, betsType.types[0].color);
+      alterColorType(_, betsType.types[0].color);
+      setGame(betsType.types[0]);
     },500)
   }else{
     removeAllButtons();
@@ -190,6 +223,7 @@ function NewBetsForm(){
                 return (
                   <button
                     key={bet.type}
+                    id={bet.type}
                     style={{color: bet.color, backgroundColor: '#fff', border: `1px solid ${bet.color}`}}
                     onClick={(e) => handleClick(e,bet)}
                   >
@@ -216,13 +250,21 @@ function NewBetsForm(){
               <button onClick={clearGame}>Clear Game</button>
             </div>
 
-            <button className="newbets-buyButton">{'{Ícone}'} Comprar</button>
+            <button onClick={handleAddToCart} className="newbets-buyButton">{'{Ícone}'} Comprar</button>
           </div>
         </div>
       }
-      <Cart />
+      <div className="newbets-rightContainer">
+        <Cart game={game || betsType.types[0]} choiceNumbers={numbers} />
+      </div>
+
+
     </NewBetsFormContainer>
   )
 }
 
 export default NewBetsForm
+function _(_: any, color: any) {
+  throw new Error("Function not implemented.");
+}
+

@@ -87,6 +87,15 @@ const HomeMyGamesContainer = styled.div`
     padding: 0.3rem 1.5rem;
     border-radius: 100px;
   }
+
+  #homemygames-enoughtBets{
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    font: italic normal bold 18px Helvetica Neue;
+    color: #707070;
+    text-transform: uppercase;
+  }
 `;
 
 export default HomeMyGamesContainer;

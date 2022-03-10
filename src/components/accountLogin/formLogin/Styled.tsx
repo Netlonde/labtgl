@@ -101,3 +101,11 @@ const FormLoginContainer = styled.form`
 `;
 
 export default FormLoginContainer
+
+export const LoadingContainer = styled.div`
+  width: 400px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

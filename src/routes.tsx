@@ -11,10 +11,15 @@ function AppRoutes(){
 
   function Private({children}: any){
     const isLoggedIn = useSelector((state: RootStateOrAny) => state.auth.isLoggedIn);
-
     if(!isLoggedIn) return(<Navigate to="/login" />);
-
     if(window.location.href === 'http://localhost:3000/') return(<Navigate to="/login" />);
+
+    return children;
+  }
+
+  function IsLogged({children}: any){
+    const isLoggedIn = useSelector((state: RootStateOrAny) => state.auth.isLoggedIn);
+    if(isLoggedIn) return(<Navigate to="/home" />);
 
     return children;
   }
@@ -22,7 +27,7 @@ function AppRoutes(){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<IsLogged> <Login /> </IsLogged>}/>
         <Route path="/" element={<Private />}/>
         <Route path="/forgot-password" element={<ForgotPassword />}/>
         <Route path="/sign-up" element={<SignUp />}/>

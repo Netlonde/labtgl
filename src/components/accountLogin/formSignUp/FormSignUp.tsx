@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { authActions } from "@store/AuthRedux";
 import auth from "@services/auth";
 import SignUpContainer from "./styled";
+import Loading from "@components/loading/Loading";
 
 function FormSignUp(){
   const navigate = useNavigate();
@@ -13,19 +14,27 @@ function FormSignUp(){
   const [ name, setName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
   async function handleCreateAccount(e : React.FormEvent){
     e.preventDefault();
+    setLoading(true)
 
     const {register} = auth();
     await register({name, email, password})
       .then(res =>{
         dispatch(authActions.REGISTER(res))
         navigate('/login');
-        toast.success('Usuário cadastrado com sucesso')
+        toast.success('Usuário cadastrado com sucesso');
+        setLoading(false);
       })
-      .catch(() => toast.error('Dados inválidos.'));
+      .catch(() =>{
+        toast.error('Dados inválidos.');
+        setLoading(false);
+      })
   }
+
+  if(loading) return <Loading />
 
   return(
     <SignUpContainer onSubmit={handleCreateAccount}>

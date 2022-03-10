@@ -21,7 +21,7 @@ const HomeContainer = styled.div`
     opacity: 1;
   }
 
-  .home-newBet button:hover{
+  .home-newBet a:hover{
     text-decoration: underline;
   }
 `;
