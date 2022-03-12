@@ -1,10 +1,11 @@
-import  { useEffect } from "react";
+import  { useEffect, useState } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { toast } from 'react-toastify';
 
-import HomeMyGamesContainer from "./styled";
+import HomeMyGamesContainer, { HomeMyGamesLoading } from "./styled";
 import myBets from "@services/listBet";
 import { listBetActions } from "@store/ListBetRedux";
+import Loading from "@components/loading/Loading";
 
 function formatedDate(number: String){
   if(Number(number)<10) number = '0' + number;
@@ -23,15 +24,20 @@ function whatColorBet(betTypes: [], bet: String){
 
 function HomeMyGames(){
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getBets(){
+      setLoading(true);
+
       try{
         const { listBets, registeredBets } = myBets();
         await listBets().then(res => dispatch(listBetActions.LISTMYBETS(res)))
         await registeredBets().then(res => dispatch(listBetActions.LISTREGISTREDBETS(res)))
+        setLoading(false);
       }catch{
         toast.error('Não foi possível obter seus jogos, atualize a página!');
+        setLoading(false);
       }
     }
     getBets();
@@ -39,10 +45,39 @@ function HomeMyGames(){
   },[dispatch])
   const betsState = useSelector((state: RootStateOrAny) => state.listBet)
 
+  function searchForBets(button: any){
+    const $EnoughtGame = document.querySelector('.homemygames-noGameFound');
+    const $betsContainer = document.querySelector('.homemygames-bets');
+    const $betNotFound = document.createElement('h2');
+    $EnoughtGame?.childNodes.forEach((betNotFound) => $EnoughtGame.removeChild(betNotFound))
+
+    if(button.style.color === 'rgb(255, 255, 255)' && !($betsContainer?.childNodes[1])){
+      $betNotFound.textContent = `No games found.`;
+      $EnoughtGame?.appendChild($betNotFound);
+      return;
+    }
+
+    if(button.style.color === 'rgb(255, 255, 255)') return;
+
+    console.log($betsContainer?.childNodes[0])
+
+    $betsContainer?.childNodes.forEach((myBet: any) =>{
+      if(myBet.childNodes[0] === undefined ||
+         myBet.childNodes[0].childNodes[3].textContent !== button.className){
+        $betNotFound.textContent = `No games found for ${button.className}`;
+        $EnoughtGame?.appendChild($betNotFound);
+      }else{
+        $betNotFound.style.display = 'none'
+      }
+    })
+  }
+
   function handleClick(e: any){
     const button = e.target;
     const allButtons = document.querySelector('.homemygames-filterButtons');
     const allBets = document.querySelectorAll('.homemygames-betContainer');
+
+    searchForBets(button);
 
     allButtons?.childNodes.forEach((filterOption: any) => {
       if(!(filterOption.childNodes[0].className === button.className)){
@@ -66,22 +101,17 @@ function HomeMyGames(){
         bet.style.display = 'none';
       }
     })
+
+
   }
 
-  (function(){
-    const $MyBets = document.querySelector('.homemygames-container');
-    const $EnoughtGame = document.getElementById('homemygames-enoughtBets') || document.createElement('div');
-
-    if(betsState.myBets.length === 0) {
-      $EnoughtGame.id = 'homemygames-enoughtBets';
-      $EnoughtGame.innerHTML = "You don't have any bets yet.";
-      $MyBets?.appendChild($EnoughtGame);
-    }else{
-      $EnoughtGame.style.display = 'none';
-    }
-
-  })();
-
+  if(loading){
+    return(
+      <HomeMyGamesLoading>
+        <Loading />
+      </HomeMyGamesLoading>
+    )
+  }
 
   return(
     <HomeMyGamesContainer className="homemygames-container">
@@ -126,23 +156,26 @@ function HomeMyGames(){
           const color = whatColorBet(betsState.bets.types, bet.type.type);
           const money = bet.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
           return (
-            <div
-              key={Math.random()}
-              className="homemygames-betContainer"
-            >
-              <hr style={{backgroundColor: color}}></hr>
-              <div className="homemygames-chosenNumbers">{bet.choosen_numbers}</div>
+            <div key={Math.random()}>
+              <div className="homemygames-betContainer">
+                <hr style={{backgroundColor: color}}></hr>
+                <div className="homemygames-chosenNumbers">{bet.choosen_numbers}</div>
 
-              <div className="homemygames-dateAndPrice">
-                {`${formatedDate(String(date.getDate()))}/${formatedDate(String(date.getMonth()))}/${date.getFullYear()} - (${money})`}
-              </div>
+                <div className="homemygames-dateAndPrice">
+                  {`${formatedDate(String(date.getDate()))}/${formatedDate(String(date.getMonth()))}/${date.getFullYear()} - (${money})`}
+                </div>
 
-              <div className="homemygames-type" style={{color}}>
-                {bet.type.type}
+                <div className="homemygames-type" style={{color}}>
+                  {bet.type.type}
+                </div>
               </div>
+              <div className="homemygames-noGameFound"></div>
             </div>
           )
         })}
+        {(betsState.myBets.length === 0) &&
+          <div className="homemygames-noGameFound"><h2>No games found.</h2></div> }
+
       </div>
     </HomeMyGamesContainer>
   )

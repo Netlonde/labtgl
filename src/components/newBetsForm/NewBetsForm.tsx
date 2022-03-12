@@ -6,7 +6,7 @@ import { listBetActions } from "@store/ListBetRedux";
 import myBets from "@services/listBet";
 
 import Cart from "./Cart/Cart";
-import NewBetsFormContainer from "./styled"
+import NewBetsFormContainer, { NewbetsLoadind } from "./styled"
 import Loading from "@components/loading/Loading";
 
 
@@ -29,7 +29,7 @@ function NewBetsForm(){
         const { registeredBets } = myBets();
         await registeredBets().then(res => dispatch(listBetActions.LISTREGISTREDBETS(res)))
       }catch{
-        alert('erro')
+        toast.error('Não foi possível obter as apostas')
       }
     }
     getBets();
@@ -37,7 +37,11 @@ function NewBetsForm(){
   },[dispatch])
   const betsType = useSelector((state: any) => state.listBet.bets)
 
-  if(betsType.types === undefined) return <Loading />
+  if(betsType.types === undefined) return(
+    <NewbetsLoadind >
+      <Loading />
+    </NewbetsLoadind>
+  )
 
   function createButtons(range: number, color: String){
     const $ButtonNumbersContainer = document.querySelector('.newbets-buttonNumbers');
@@ -186,12 +190,43 @@ function NewBetsForm(){
     alterColorType(e, game.color);
   }
 
+  function correctRange(sortNumbers: any){
+    const numbersRange = game.max_number - sortNumbers.length;
+    if (sortNumbers.length !== game.max_number){
+      toast.error(`Selecione mais ${numbersRange} número${(numbersRange > 1) ? 's' : ''}`);
+      return false;
+    };
+    return true;
+  }
+
+  function betAlreadyExists(sortNumbers: any){
+    let newSortNumbers: string[] = [];
+    let isExist = false;
+
+    sortNumbers.forEach((number:number) => newSortNumbers.push(String(number)))
+
+    const $GameListContainer = document.querySelector('.cart-gameList');
+    $GameListContainer?.childNodes.forEach((game: any) => {
+      if(game.id === newSortNumbers.join(',')) isExist = true;
+    })
+
+    return isExist;
+  }
+
   function handleAddToCart(e: React.MouseEvent){
     const $choiceNumbers = document.querySelector('.newbets-buttonNumbersChoiced');
+
     let numbers : any;
     numbers = $choiceNumbers?.textContent;
     numbers = numbers!.split(',')
+    numbers = numbers.filter((numberInText: string) => numberInText !== '');
+    if(!correctRange(numbers)) return;
+    if (betAlreadyExists(numbers)){
+      toast.error('Você já escolheu essa combinação');
+      return;
+    }
     setNumbers(numbers);
+
     clearGame(e);
   }
 

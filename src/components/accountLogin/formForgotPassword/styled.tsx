@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FormForgotContainer = styled.div`
+const FormForgotContainer = styled.form`
   box-shadow: 0px 3px 25px #00000014;
   border: 1px solid #DDDDDD;
   border-radius: 14px;

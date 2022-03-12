@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaBars } from 'react-icons/fa';
 
@@ -9,6 +9,7 @@ import ResponsiveHeader from "./responsiveHeader/ResponsiveHeader";
 import HeaderContainer from "./styled";
 
 function Header(){
+  const [isNeedHomeLink, setIsNeedHomeLink] = useState(false);
   const isOppen = useSelector((state: any) => state.modalLogout);
   const isResponsiveOppen = useSelector((state: any) => state.modalResponsiveOptions)
   const dispatch = useDispatch();
@@ -34,12 +35,18 @@ function Header(){
   }
 
 
+
   return(
     <HeaderContainer>
       <div className="header-logo">
         TGL
 
         <hr className="header-lineDivisor" />
+
+      </div>
+
+      <div className="header-homeLink">
+        {(window.location.href === 'http://localhost:3000/new-bets') && <a href="/home" >home</a>}
       </div>
 
       <div className="header-options">

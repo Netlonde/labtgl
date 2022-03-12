@@ -15,7 +15,8 @@ export const listBetSlice = createSlice({
 
     LISTREGISTREDBETS(state, action){
       state.bets = action.payload;
-    }
+    },
+
   }
 })
 

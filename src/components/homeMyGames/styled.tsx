@@ -30,7 +30,7 @@ const HomeMyGamesContainer = styled.div`
 
   .homemygames-bets{
     padding: 1.4rem;
-    max-height: 300px;
+    max-height: 400px;
     width: 450px;
     overflow: auto;
   }
@@ -96,6 +96,28 @@ const HomeMyGamesContainer = styled.div`
     color: #707070;
     text-transform: uppercase;
   }
+
+  .homemygames-noGameFound{
+    position: absolute;
+    top: 300px;
+    right: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: italic normal bold 18px Helvetica Neue;
+    color: #707070;
+  }
 `;
 
 export default HomeMyGamesContainer;
+
+export const HomeMyGamesLoading = styled.div`
+  position: absolute;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff
+`;

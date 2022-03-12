@@ -6,6 +6,7 @@ import ForgotPassword from "@pages/forgotPassword";
 import SignUp from "@pages/signUp";
 import Home from "@pages/home";
 import NewBets from "@pages/newBets";
+import Page404 from "@pages/404";
 
 function AppRoutes(){
 
@@ -33,6 +34,7 @@ function AppRoutes(){
         <Route path="/sign-up" element={<SignUp />}/>
         <Route path="/home" element={<Private> <Home /> </Private>}/>
         <Route path="/new-bets" element={<Private> <NewBets /> </Private>}/>
+        <Route path="*" element={<Page404 />}/>
       </Routes>
     </BrowserRouter>
   )

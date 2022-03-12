@@ -15,14 +15,19 @@ const FormLoginContainer = styled.form`
 
   input{
     width: 100%;
+    min-height: 51px;
     padding: 1rem;
     border: none;
     border-bottom: 1px solid #DDDDDD;
     border-radius: 14px 14px 0px 0px;
     margin-bottom: 2px;
-    font: italic normal bold 14px/15px Helvetica Neue;
+    font: normal normal normal 14px/15px Helvetica Neue;
     color: #404040;
     outline: none;
+  }
+
+  input:placeholder-shown{
+    font: italic normal bold 14px/15px Helvetica Neue;
   }
 
   .formlogin-forgotPassword{

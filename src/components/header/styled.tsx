@@ -62,10 +62,19 @@ const HeaderContainer = styled.header`
     opacity: 1;
   }
 
+  .header-homeLink{
+    position: absolute;
+    left: 270px;
+  }
+
   @media (max-width: 700px) {
     padding: 0px 50px;
 
     .header-options{
+      display: none;
+    }
+
+    .header-homeLink{
       display: none;
     }
 

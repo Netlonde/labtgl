@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import FormLoginContainer, {LoadingContainer} from "./Styled";
 import { authActions } from "@store/AuthRedux";
 import auth from "@services/auth";
 import Loading from "@components/loading/Loading";
+import loginSchema from "./validateLogin/ValidateLogin";
+
+type UserData = {
+  email: string,
+  password: string
+}
 
 function FormLogin(){
   const navigate = useNavigate();
@@ -14,9 +22,11 @@ function FormLogin(){
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ loading, setLoading ] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm<UserData>({
+    resolver: yupResolver(loginSchema)
+  });
 
-  async function handleLogin(e: React.FormEvent){
-    e.preventDefault();
+  async function handleLogin(){
     const {login} = auth();
 
     try{
@@ -32,7 +42,6 @@ function FormLogin(){
         .catch(() => {
           toast.error('Login e/ou senha inválidos');
           localStorage.removeItem('token');
-          localStorage.removeItem('user');
           dispatch(authActions.LOGOUT());
           setLoading(false);
         });
@@ -41,6 +50,15 @@ function FormLogin(){
       toast.error('Não foi possível realizar o login.');
       setLoading(false);
     }
+  }
+
+  function displayErrorMessages(){
+    const $emailInput: any = document.querySelector('.emailInput');
+    const $passwordInput:any = document.querySelector('.passwordInput');
+    if($emailInput?.value === '') toast.error(`${errors.email?.message || 'Email é obrigatório'}`)
+    if($passwordInput?.value === '') toast.error(`${errors.password?.message || 'Senha é obrigatória'}`)
+    if($passwordInput?.value !== '' && $passwordInput?.value.length < 6) toast.error(`${'Senha precisa ter entre 6 e 18 caracteres'}`)
+    if($passwordInput?.value !== '' && $passwordInput?.value.length > 18) toast.error(`${'Senha precisa ter entre 6 e 18 caracteres'}`)
   }
 
   if(loading){
@@ -52,18 +70,22 @@ function FormLogin(){
   }
 
   return(
-    <FormLoginContainer onSubmit={handleLogin}>
+    <FormLoginContainer onSubmit={handleSubmit(handleLogin)}>
       <input
+        className="emailInput"
         type="email"
         placeholder="Email"
         value={email}
+        {...register("email", { required: true })}
         onChange={(e) => setEmail(e.target.value)}
       />
 
       <input
+        className="passwordInput"
         type="password"
         placeholder="Password"
         value={password}
+        {...register("password", { required: true })}
         onChange={(e) => setPassword(e.target.value)}
       />
 
@@ -72,9 +94,10 @@ function FormLogin(){
       </div>
 
       <div className="formlogin-buttonLogin">
-        <button>Log In {"->"}</button>
+        <button type="submit" onClick={displayErrorMessages}>Log In {"->"}</button>
       </div>
     </FormLoginContainer>
+
   )
 }
 

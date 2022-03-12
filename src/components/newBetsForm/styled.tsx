@@ -9,7 +9,7 @@ const NewBetsFormContainer = styled.div`
 
   h2{
     text-align: left;
-    font: italic normal bold 22px/85px Helvetica Neue;
+    font: italic normal bold 22px/50px Helvetica Neue;
     letter-spacing: 0px;
     color: #707070;
     text-transform: uppercase;
@@ -30,11 +30,20 @@ const NewBetsFormContainer = styled.div`
     letter-spacing: 0px;
     color: #868686;
     opacity: 1;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .newbets-leftContainer{
     width: 700px;
+    height: 575px;
+  }
+
+  .newbets-leftContainer span{
+    text-align: center;
+    font: italic normal 300 22px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+    text-transform: uppercase;
   }
 
   .newbets-rightContainer{
@@ -66,7 +75,7 @@ const NewBetsFormContainer = styled.div`
   }
 
   .newbets-buttonNumbers{
-    height: 210px;
+    height: 222px;
     overflow: auto;
   }
 
@@ -133,3 +142,11 @@ const NewBetsFormContainer = styled.div`
 `;
 
 export default NewBetsFormContainer;
+
+
+export const NewbetsLoadind = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

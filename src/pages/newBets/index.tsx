@@ -1,3 +1,4 @@
+import React from "react";
 import NewBetsContainer from "./styled";
 import NewBetsForm from "@components/newBetsForm/NewBetsForm";
 import Header from "@components/header/Header";
@@ -11,4 +12,4 @@ function NewBets(){
   )
 }
 
-export default NewBets;
+export default React.memo(NewBets);

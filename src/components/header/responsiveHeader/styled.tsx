@@ -38,10 +38,14 @@ const ResponsiveHeaderContainer = styled.div`
     opacity: 0.8;
   }
 
+  .header-homeLink{
+    margin-top: 80px;
+    padding: 1.2rem;
+  }
+
   .responsiveheader-accountButton{
     width: 100%;
     padding: 1.2rem;
-    margin-top: 80px;
   }
 
   .responsiveheader-logoutButton{

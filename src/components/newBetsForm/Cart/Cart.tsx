@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -18,12 +19,8 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     $GameListContainer?.childNodes.forEach((game: any) => {
       if(game.id === newSortNumbers.join(',')) isExist = true;
     })
-    return isExist;
-  }
 
-  function correctRange(sortNumbers: any){
-    console.log(sortNumbers)
-    return (sortNumbers.length === game.max_number);
+    return isExist;
   }
 
   function cartTotal(price: any){
@@ -42,6 +39,7 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     let money = 0;
 
     $GameListContainer?.childNodes.forEach((bet: any) => {
+      if(bet.localName === 'p') return;
       let betCost =(((bet.childNodes[1].childNodes[1].childNodes[1].textContent).replace(getNumberBR,'')));
       betCost = betCost.replace(getComma, '.');
       money += Number(betCost)
@@ -50,13 +48,21 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     cartTotal(money);
   }
 
+  function addEnoughtMessage(){
+    const $EnoughtMessage = document.createElement('p');
+    const $cartGameList = document.querySelector('.cart-gameList');
+    $EnoughtMessage.id = 'cart-enoughtGames';
+    $EnoughtMessage.textContent = 'No games found.'
+    $cartGameList?.appendChild($EnoughtMessage);
+  }
+
   (function initializeGameContainer(){
     const $choiceNumbers = document.querySelector('.newbets-buttonNumbersChoiced');
     if(!$choiceNumbers) return;
     if(!game) return;
     if(choiceNumbers.length <= 1) return;
 
-    const $EnoughtMessage = document.getElementById('cart-enoughtGames');
+    const $EnoughtMessage = document.getElementById('cart-enoughtGames')
     const $GameListContainer = document.querySelector('.cart-gameList');
     const $div = document.createElement('div');
     const $divLeft = document.createElement('div');
@@ -68,7 +74,6 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     const $pValue = document.createElement('p');
     let sortNumbers: number[] = [];
 
-
     choiceNumbers.forEach((number) => sortNumbers.push(Number(number)))
     sortNumbers = sortNumbers.sort((a: number, b: number) => a-b);
     sortNumbers = sortNumbers.filter((number: number) => number !== 0)
@@ -76,7 +81,6 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     $EnoughtMessage?.remove();
 
     if(betAlreadyExists(sortNumbers)) return;
-    if(!correctRange(sortNumbers)) return;
 
     $divRightBottom.className = 'games-cartNumbersBottomContainer'
     $pType.className = `games-${game.type}`;
@@ -87,6 +91,7 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
 
     $btnRemove.addEventListener('click', () =>{
       $GameListContainer?.removeChild($div)
+      if(!$GameListContainer?.childNodes[0]) addEnoughtMessage();
       cartTotalPrice();
     })
 
@@ -127,7 +132,6 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     e.preventDefault();
     const myBetsInfo = getInfo();
     const {newBets} = createNewBets()
-
     try{
       await newBets(myBetsInfo)
         .then(() => {
@@ -155,4 +159,5 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
   )
 }
 
-export default Cart;
+
+export default React.memo(Cart);
