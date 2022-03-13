@@ -41,6 +41,10 @@ const CartContainer = styled.div`
   }
 
   .cart-saveBuy button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     text-align: center;
     font: italic normal bold 35px Helvetica Neue;
     letter-spacing: 0px;
@@ -115,3 +119,11 @@ const CartContainer = styled.div`
 `;
 
 export default CartContainer;
+
+export const LoadingContainer = styled.div`
+  width: 400px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

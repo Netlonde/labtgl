@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FaArrowRight } from 'react-icons/fa';
 
 import FormLoginContainer, {LoadingContainer} from "./Styled";
 import { authActions } from "@store/AuthRedux";
@@ -94,7 +95,7 @@ function FormLogin(){
       </div>
 
       <div className="formlogin-buttonLogin">
-        <button type="submit" onClick={displayErrorMessages}>Log In {"->"}</button>
+        <button type="submit" onClick={displayErrorMessages}>Log In <FaArrowRight /></button>
       </div>
     </FormLoginContainer>
 

@@ -21,6 +21,14 @@ function ResponsiveHeader(props: any){
     navigate('/home');
   }
 
+  function handleGoToNewBet(){
+    navigate('/new-bets');
+  }
+
+  function handleGoToAccount(){
+    navigate('/account');
+  }
+
   return ReactDOM.createPortal(
     <ResponsiveHeaderContainer>
       <div className="responsiveheader-close">
@@ -28,13 +36,21 @@ function ResponsiveHeader(props: any){
       </div>
 
       <div className="header-homeLink">
-        {(window.location.href === 'http://localhost:3000/new-bets') &&
+        {(window.location.href !== 'http://localhost:3000/home') &&
           <button onClick={handleGoToHome} >home</button>}
       </div>
 
-      <div className="responsiveheader-accountButton">
-        <button>Account</button>
-      </div>
+        {(window.location.href !== 'http://localhost:3000/new-bets') &&
+          <div className="header-newBetLink">
+              <button onClick={handleGoToNewBet} >New Bet</button>
+          </div>
+        }
+
+      {(window.location.href !== 'http://localhost:3000/account') &&
+        <div className="responsiveheader-accountButton">
+          <button onClick={handleGoToAccount}>Account</button>
+        </div>
+      }
 
       <div className="responsiveheader-logoutButton">
         <button onClick={handleResponsiveLogout}>Sair</button>

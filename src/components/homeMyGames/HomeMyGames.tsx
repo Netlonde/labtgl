@@ -56,10 +56,7 @@ function HomeMyGames(){
       $EnoughtGame?.appendChild($betNotFound);
       return;
     }
-
     if(button.style.color === 'rgb(255, 255, 255)') return;
-
-    console.log($betsContainer?.childNodes[0])
 
     $betsContainer?.childNodes.forEach((myBet: any) =>{
       if(myBet.childNodes[0] === undefined ||

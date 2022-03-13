@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FaArrowRight } from 'react-icons/fa';
 
 import forgotSchema from './validateForgot/ValidateForgot';
 import FormForgotContainer from "./styled";
@@ -38,7 +39,7 @@ function FormForgot(){
       />
 
       <div className="formforgot-sendLink">
-        <button onClick={displayErrorMessages}>Send link {"->"}</button>
+        <button onClick={displayErrorMessages}>Send link <FaArrowRight /></button>
       </div>
     </FormForgotContainer>
   )

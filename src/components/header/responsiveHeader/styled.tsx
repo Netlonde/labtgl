@@ -53,6 +53,9 @@ const ResponsiveHeaderContainer = styled.div`
     padding: 1.2rem;
   }
 
+  .header-newBetLink {
+    padding: 1.2rem;
+  }
 
 `;
 

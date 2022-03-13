@@ -19,9 +19,20 @@ const SignUpContainer = styled.form`
     border: none;
     border-bottom: 1px solid #DDDDDD;
     border-radius: 14px 14px 0px 0px;
-    font: italic normal bold 14px/15px Helvetica Neue;
+    font: normal normal normal 14px/15px Helvetica Neue;
     color: #404040;
     outline: none;
+  }
+
+  input:placeholder-shown{
+    font: italic normal bold 14px/15px Helvetica Neue;
+  }
+
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 
   .formsignup-register{

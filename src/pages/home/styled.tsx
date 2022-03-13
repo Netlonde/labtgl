@@ -6,10 +6,9 @@ const HomeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 300px;
+  gap: 100px;
 
   .home-newBet{
-    margin-right: 50px;
     margin-bottom: 365px;
   }
 
@@ -23,6 +22,20 @@ const HomeContainer = styled.div`
 
   .home-newBet a:hover{
     text-decoration: underline;
+  }
+
+  @media (max-width: 1085px) {
+    .home-newBet{
+      position: absolute;
+      right: 100px;
+      bottom: -300px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .home-newBet{
+      display: none;
+    }
   }
 `;
 

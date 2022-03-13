@@ -129,6 +129,10 @@ const NewBetsFormContainer = styled.div`
     border: 1px solid #27C383;
     color: #fff;
     transition: all ease-in-out 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 
   .newbets-buyButton:hover{

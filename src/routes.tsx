@@ -6,6 +6,7 @@ import ForgotPassword from "@pages/forgotPassword";
 import SignUp from "@pages/signUp";
 import Home from "@pages/home";
 import NewBets from "@pages/newBets";
+import Account from "@pages/account";
 import Page404 from "@pages/404";
 
 function AppRoutes(){
@@ -29,7 +30,8 @@ function AppRoutes(){
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<IsLogged> <Login /> </IsLogged>}/>
-        <Route path="/" element={<Private />}/>
+        <Route path="/" element={<IsLogged> <Private /> </IsLogged>}/>
+        <Route path="/account" element={<Account />}/>
         <Route path="/forgot-password" element={<ForgotPassword />}/>
         <Route path="/sign-up" element={<SignUp />}/>
         <Route path="/home" element={<Private> <Home /> </Private>}/>

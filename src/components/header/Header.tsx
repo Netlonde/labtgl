@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaArrowRight } from 'react-icons/fa';
 
 import { modalLogoutActions } from "@store/ModalLogoutRedux";
 import { modalResponsiveOptionsActions } from "@store/ModalResponsiveOptionsRedux";
@@ -9,7 +9,6 @@ import ResponsiveHeader from "./responsiveHeader/ResponsiveHeader";
 import HeaderContainer from "./styled";
 
 function Header(){
-  const [isNeedHomeLink, setIsNeedHomeLink] = useState(false);
   const isOppen = useSelector((state: any) => state.modalLogout);
   const isResponsiveOppen = useSelector((state: any) => state.modalResponsiveOptions)
   const dispatch = useDispatch();
@@ -46,12 +45,15 @@ function Header(){
       </div>
 
       <div className="header-homeLink">
-        {(window.location.href === 'http://localhost:3000/new-bets') && <a href="/home" >home</a>}
+        {(window.location.href !== 'http://localhost:3000/home') && <a href="/home" >home</a>}
       </div>
 
       <div className="header-options">
-        <a href="#">Account</a>
-        <a href="/login" onClick={handleClick}>Sair {'->'}</a>
+        {(window.location.href !== 'http://localhost:3000/account') &&
+          <a href="/account">Account</a>
+        }
+
+        <a href="/login" onClick={handleClick}>Sair <FaArrowRight /></a>
       </div>
 
       <div className="header-responsiveOptions">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from 'react-toastify';
+import { FaShoppingCart } from 'react-icons/fa'
 
 import { listBetActions } from "@store/ListBetRedux";
 import myBets from "@services/listBet";
@@ -173,7 +174,7 @@ function NewBetsForm(){
       })
     }
 
-    if($button.style.color !== 'rgb(255, 255, 255)' ){
+    if($button && $button.style.color !== 'rgb(255, 255, 255)' ){
       $button.style.backgroundColor = $button.style.color;
       $button.style.border = `1px solid ${$button.style.color}`;
       $button.style.color = 'rgb(255,255,255)'
@@ -285,7 +286,7 @@ function NewBetsForm(){
               <button onClick={clearGame}>Clear Game</button>
             </div>
 
-            <button onClick={handleAddToCart} className="newbets-buyButton">{'{Ícone}'} Comprar</button>
+            <button onClick={handleAddToCart} className="newbets-buyButton"><FaShoppingCart /> Comprar</button>
           </div>
         </div>
       }

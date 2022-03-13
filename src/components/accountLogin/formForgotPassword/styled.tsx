@@ -22,6 +22,13 @@ const FormForgotContainer = styled.form`
     outline: none;
   }
 
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
   .formforgot-sendLink{
     width: 100%;
     height: 100%;

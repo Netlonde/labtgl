@@ -83,7 +83,7 @@ const HomeMyGamesContainer = styled.div`
   }
 
   .homemygames-filterOptions button{
-    font: italic normal bold 14px Helvetica Neue;
+    font: italic normal bold 13px Helvetica Neue;
     padding: 0.3rem 1.5rem;
     border-radius: 100px;
   }
@@ -108,6 +108,58 @@ const HomeMyGamesContainer = styled.div`
     font: italic normal bold 18px Helvetica Neue;
     color: #707070;
   }
+
+  @media (max-width: 840px) {
+    h3{
+      font: italic normal bold 16px Helvetica Neue !important;
+    }
+
+    .homemygames-filterButtons button{
+      font: italic normal bold 11px Helvetica Neue;
+    }
+  }
+
+  @media (max-width: 740px) {
+    .homemygames-filterGames{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+
+      h3{
+        margin-right: 0px;
+      }
+    }
+
+    .homemygames-noGameFound{
+      margin-top: 100px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .homemygames-filterButtons{
+      flex-direction: column;
+    }
+
+    .homemygames-noGameFound{
+        font-size: 14px;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .homemygames-noGameFound{
+        left: 10px;
+        font-size: 11px;
+    }
+
+    .homemygames-bets{
+      width: 300px;
+    }
+  }
+
+
+
 `;
 
 export default HomeMyGamesContainer;

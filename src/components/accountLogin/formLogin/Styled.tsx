@@ -26,6 +26,13 @@ const FormLoginContainer = styled.form`
     outline: none;
   }
 
+  button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
   input:placeholder-shown{
     font: italic normal bold 14px/15px Helvetica Neue;
   }

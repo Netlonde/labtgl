@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaArrowRight } from 'react-icons/fa';
 
 import CartContainer from './styled';
 import createNewBets from '@services/newBet';
+
 
 function Cart(props: {game: any, choiceNumbers: Number[]}){
   const navigate = useNavigate();
@@ -120,6 +122,11 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
     let numbers = [];
     let game_id;
     $cartGameList?.childNodes.forEach((bet: any) => {
+      if(bet.id === 'cart-enoughtGames'){
+        toast.error('Você não possui itens no carrinho');
+        return;
+      }
+
       game_id = (bet.className[bet.className.length - 1]);
       numbers = JSON.parse('[' + bet.id + ']');
       totalBets.games.push({game_id, numbers});
@@ -131,6 +138,8 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
   async function handleAddBetToMyHomeList(e: React.MouseEvent){
     e.preventDefault();
     const myBetsInfo = getInfo();
+    if(myBetsInfo.games.length === 0) return;
+
     const {newBets} = createNewBets()
     try{
       await newBets(myBetsInfo)
@@ -153,7 +162,7 @@ function Cart(props: {game: any, choiceNumbers: Number[]}){
       <h2>CART <span className='cart-total'>TOTAL: R$ 0,00</span></h2>
 
       <div className='cart-saveBuy'>
-        <button onClick={handleAddBetToMyHomeList}>Save {'->'}</button>
+        <button onClick={handleAddBetToMyHomeList}>Save <FaArrowRight /></button>
       </div>
     </CartContainer>
   )

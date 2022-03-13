@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FaArrowRight } from 'react-icons/fa';
 
 import { authActions } from "@store/AuthRedux";
 import auth from "@services/auth";
@@ -88,7 +89,7 @@ function FormSignUp(){
       />
 
       <div className="formsignup-register">
-        <button onClick={displayErrorMessages}>Register {"->"}</button>
+        <button onClick={displayErrorMessages}>Register <FaArrowRight /></button>
       </div>
     </SignUpContainer>
   )
