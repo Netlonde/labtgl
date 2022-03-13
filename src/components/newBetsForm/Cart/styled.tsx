@@ -116,6 +116,42 @@ const CartContainer = styled.div`
     color: #707070;
     text-transform: uppercase;
   }
+
+  @media (max-width: 1200px) {
+    width: 400px;
+
+    .games-cartNumbersContainer{
+      width: 100%;
+      padding: 0px 20px;
+    }
+
+    .games-cartNumbersRightContainer {
+      width: 240px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    margin: 0px;
+
+    .games-cartNumbersContainer{
+      width: 100%;
+      padding: 0px 20px;
+    }
+
+    .games-cartNumbersRightContainer {
+      width: 240px;
+    }
+  }
+
+  @media (max-width: 620px) {
+    width: 320px;
+    margin: 0px;
+    margin-top: 400px;
+
+    .games-cartNumbersRightContainer {
+      width: 185px;
+    }
+  }
 `;
 
 export default CartContainer;

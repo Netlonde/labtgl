@@ -97,6 +97,7 @@ const NewBetsFormContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 10;
   }
 
   .newbets-buttonsBuy button{
@@ -142,6 +143,86 @@ const NewBetsFormContainer = styled.div`
 
   .newbets-buttonNumbersChoiced{
     display: none;
+  }
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    margin-top: 550px;
+  }
+
+  @media (max-width: 800px) {
+    h2{
+      text-align: center;
+    }
+
+    small{
+      text-align: center;
+    }
+
+    .newbets-gamesButtonContainer{
+      justify-content: center;
+    }
+
+    .newbets-descriptionContainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .newbets-description{
+      width: 80%;
+    }
+
+    .newbets-buttonNumbersContainer{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .newbets-buttonNumbers{
+      width: 80%;
+    }
+
+    .newbets-buttonsBuyContainer{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .newbets-buttonsBuy{
+      width: 80%;
+    }
+
+    .newbets-rightContainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .newbets-description,
+    .newbets-buttonNumbers,
+    .newbets-buttonsBuy{
+      width: 50%;
+    }
+
+    .newbets-gamesButtonContainer{
+      flex-direction: column;
+    }
+
+    .newbets-buttonsBuy{
+      margin-bottom: 200px;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .newbets-buyButton{
+      width: 80%;
+    }
   }
 `;
 

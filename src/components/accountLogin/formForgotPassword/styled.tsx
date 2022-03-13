@@ -61,6 +61,10 @@ const FormForgotContainer = styled.form`
     max-height: 15rem;
 
     input{
+      font: normal normal normal 17px/15px Helvetica Neue;
+    }
+
+    input:placeholder-shown{
       font: italic normal bold 17px/15px Helvetica Neue;
     }
   }
@@ -70,6 +74,10 @@ const FormForgotContainer = styled.form`
     max-height: 15rem;
 
     input{
+      font: normal normal normal 17px/15px Helvetica Neue;
+    }
+
+    input:placeholder-shown{
       font: italic normal bold 17px/15px Helvetica Neue;
     }
   }

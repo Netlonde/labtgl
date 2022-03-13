@@ -270,23 +270,28 @@ function NewBetsForm(){
             </div>
           </div>
 
-          <div>
+          <div className="newbets-descriptionContainer">
             <h4>Fill your bet</h4>
             <p className="newbets-description">{game.description || betsType.types[0].description}</p>
           </div>
 
-          <div className="newbets-buttonNumbers"></div>
+          <div className="newbets-buttonNumbersContainer">
+            <div className="newbets-buttonNumbers"></div>
+          </div>
 
           <div className="newbets-buttonNumbersChoiced"></div>
 
-          <div className="newbets-buttonsBuy">
+          <div className="newbets-buttonsBuyContainer">
 
-            <div className="newbets-buttonsGame">
-              <button onClick={completeGame}>Complete Game</button>
-              <button onClick={clearGame}>Clear Game</button>
+            <div className="newbets-buttonsBuy">
+
+              <div className="newbets-buttonsGame">
+                <button onClick={completeGame}>Complete Game</button>
+                <button onClick={clearGame}>Clear Game</button>
+              </div>
+
+              <button onClick={handleAddToCart} className="newbets-buyButton"><FaShoppingCart /> Comprar</button>
             </div>
-
-            <button onClick={handleAddToCart} className="newbets-buyButton"><FaShoppingCart /> Comprar</button>
           </div>
         </div>
       }
